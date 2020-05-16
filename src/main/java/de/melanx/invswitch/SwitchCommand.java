@@ -9,7 +9,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.server.management.PlayerList;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 
@@ -48,8 +47,6 @@ public class SwitchCommand {
         setInventory(inventory2, invCache1);
         ITextComponent textComponent = new TranslationTextComponent(InventorySwitch.MODID + ".change_inventories", player1.getDisplayName().getFormattedText(), player2.getDisplayName().getFormattedText());
         source.sendFeedback(textComponent, true);
-        PlayerList playerList = source.getServer().getPlayerList();
-        playerList.sendMessage(textComponent);
         return 1;
     }
 
