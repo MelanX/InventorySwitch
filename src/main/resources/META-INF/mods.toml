@@ -1,11 +1,11 @@
 modLoader="javafml"
-loaderVersion="[31,)"
-issueTrackerURL="http://www.github.com/MelanX/playerchange/issues/"
+loaderVersion="[28,)"
+issueTrackerURL="http://www.github.com/MelanX/InventorySwitch/issues/"
 
 [[mods]]
-modId="playerchange"
+modId="invswitch"
 version="${file.jarVersion}"
-displayName="Player Change"
+displayName="InventorySwitch"
 #updateJSONURL="http://www.github.com/MelanX/modid/update/update.json"
 displayURL="www.curseforge.com/members/melanx/"
 #logoFile="examplemod.png"
@@ -15,16 +15,16 @@ description='''
 A mod to change inventories for 2 players on a server.
 '''
 
-[[dependencies.playerchange]]
+[[dependencies.invswitch]]
     modId="forge"
     mandatory=true
-    versionRange="[31.1,)"
+    versionRange="[28.2,)"
     ordering="NONE"
     side="BOTH"
 
-[[dependencies.playerchange]]
+[[dependencies.invswitch]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.15.2]"
+    versionRange="[1.14.4]"
     ordering="NONE"
     side="BOTH"
