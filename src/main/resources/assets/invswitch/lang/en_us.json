@@ -1,3 +1,7 @@
 {
-  "invswitch.change_inventories": "%s and %s changed their inventories!"
+  "invswitch.change_inventories": "%s and %s changed their inventories",
+  "invswitch.player_null": "One of the player was not found",
+  "invswitch.inv_null": "One of the inventories was not found",
+  "invswitch.player_equals": "It's the same player",
+  "invswitch.inv_equals": "Both players share one inventory"
 }

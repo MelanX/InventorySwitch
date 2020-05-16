@@ -6,7 +6,7 @@ issueTrackerURL="http://www.github.com/MelanX/InventorySwitch/issues/"
 modId="invswitch"
 version="${file.jarVersion}"
 displayName="InventorySwitch"
-#updateJSONURL="http://www.github.com/MelanX/modid/update/update.json"
+updateJSONURL="https://github.com/MelanX/InventorySwitch/raw/master/update/update.json"
 displayURL="www.curseforge.com/members/melanx/"
 #logoFile="examplemod.png"
 credits=""
@@ -25,6 +25,6 @@ A mod to change inventories for 2 players on a server.
 [[dependencies.invswitch]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.14.4]"
+    versionRange="[1.14.4,)"
     ordering="NONE"
     side="BOTH"

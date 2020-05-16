@@ -11,13 +11,9 @@ import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 public class InventorySwitch {
 
     public static final String MODID = "invswitch";
-    public InventorySwitch instance;
 
     public InventorySwitch() {
-        instance = this;
-
         MinecraftForge.EVENT_BUS.addListener(this::serverLoad);
-        MinecraftForge.EVENT_BUS.register(this);
     }
 
     public static void register(CommandDispatcher<CommandSource> dispatcher) {

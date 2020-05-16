@@ -10,6 +10,8 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.Style;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 
 import java.util.ArrayList;
@@ -32,6 +34,7 @@ public class SwitchCommand {
         PlayerEntity player2 = null;
         PlayerInventory inventory1 = null;
         PlayerInventory inventory2 = null;
+        Style red = new Style().setColor(TextFormatting.DARK_RED);
         if (target1 instanceof PlayerEntity) {
             player1 = (PlayerEntity) target1;
             inventory1 = player1.inventory;
@@ -40,7 +43,30 @@ public class SwitchCommand {
             player2 = (PlayerEntity) target2;
             inventory2 = player2.inventory;
         }
-        if (inventory1 == null || inventory2 == null) return 0;
+        if (player1 == null || player2 == null) {
+            ITextComponent textComponent = new TranslationTextComponent(InventorySwitch.MODID + ".player_null");
+            textComponent.setStyle(red);
+            source.sendFeedback(textComponent, true);
+            return 0;
+        }
+        if (inventory1 == null || inventory2 == null) {
+            ITextComponent textComponent = new TranslationTextComponent(InventorySwitch.MODID + ".inv_null");
+            textComponent.setStyle(red);
+            source.sendFeedback(textComponent, true);
+            return 0;
+        }
+        if (player1 == player2) {
+            ITextComponent textComponent = new TranslationTextComponent(InventorySwitch.MODID + ".player_equals");
+            textComponent.setStyle(red);
+            source.sendFeedback(textComponent, true);
+            return 0;
+        }
+        if (inventory1 == inventory2) {
+            ITextComponent textComponent = new TranslationTextComponent(InventorySwitch.MODID + ".inv_equals");
+            textComponent.setStyle(red);
+            source.sendFeedback(textComponent, true);
+            return 0;
+        }
         List<ItemStack> invCache1 = getCache(inventory1);
         List<ItemStack> invCache2 = getCache(inventory2);
         setInventory(inventory1, invCache2);
