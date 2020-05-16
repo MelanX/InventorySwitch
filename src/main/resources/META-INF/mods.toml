@@ -1,28 +1,28 @@
 modLoader="javafml"
 loaderVersion="[31,)"
-issueTrackerURL="http://www.github.com/MelanX/modid/issues/"
+issueTrackerURL="http://www.github.com/MelanX/playerchange/issues/"
 
 [[mods]]
-modId="modid"
+modId="playerchange"
 version="${file.jarVersion}"
-displayName="Mod ID"
-updateJSONURL="http://www.github.com/MelanX/modid/update/update.json"
+displayName="Player Change"
+#updateJSONURL="http://www.github.com/MelanX/modid/update/update.json"
 displayURL="www.curseforge.com/members/melanx/"
 #logoFile="examplemod.png"
 credits=""
 authors="MelanX"
 description='''
-
+A mod to change inventories for 2 players on a server.
 '''
 
-[[dependencies.modid]]
+[[dependencies.playerchange]]
     modId="forge"
     mandatory=true
     versionRange="[31.1,)"
     ordering="NONE"
     side="BOTH"
 
-[[dependencies.modid]]
+[[dependencies.playerchange]]
     modId="minecraft"
     mandatory=true
     versionRange="[1.15.2]"

@@ -1,18 +1,18 @@
-package de.melanx.modid;
+package de.melanx.playerchange;
 
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-@Mod(ModName.MODID)
-public class ModName {
+@Mod(PlayerChange.MODID)
+public class PlayerChange {
 
-    public static final String MODID = "modid";
+    public static final String MODID = "playerchange";
     private static final Logger LOGGER = LogManager.getLogger(MODID);
-    public ModName instance;
+    public PlayerChange instance;
 
-    public ModName() {
+    public PlayerChange() {
         instance = this;
 
         MinecraftForge.EVENT_BUS.register(this);
