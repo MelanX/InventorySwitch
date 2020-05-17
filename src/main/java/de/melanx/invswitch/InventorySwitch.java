@@ -18,7 +18,7 @@ public class InventorySwitch {
 
     public static void register(CommandDispatcher<CommandSource> dispatcher) {
         dispatcher.register(Commands.literal(MODID)
-                .then(SwitchCommand.register(dispatcher))
+                .then(SwitchCommand.register())
         );
     }
 

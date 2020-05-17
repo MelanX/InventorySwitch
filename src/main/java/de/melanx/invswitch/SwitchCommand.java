@@ -21,7 +21,7 @@ import java.util.List;
 
 public class SwitchCommand {
 
-    public static ArgumentBuilder<CommandSource, ?> register(CommandDispatcher<CommandSource> dispatcher) {
+    public static ArgumentBuilder<CommandSource, ?> register() {
         return Commands.literal("switch")
                 .requires((cs) -> {
                     return cs.hasPermissionLevel(3);
