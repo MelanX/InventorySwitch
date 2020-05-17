@@ -4,5 +4,8 @@
   "invswitch.player_null": "One of the player was not found",
   "invswitch.inv_null": "One of the inventories was not found",
   "invswitch.player_equals": "It's the same player",
-  "invswitch.inv_equals": "Both players share one inventory"
+  "invswitch.inv_equals": "Both players share one inventory",
+  "invswitch.weather.add.rain": "Set rain duration to %s seconds",
+  "invswitch.weather.add.thunder": "Set thunder duration to %s seconds"
+
 }

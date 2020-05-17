@@ -1,6 +1,8 @@
 package de.melanx.invswitch;
 
 import com.mojang.brigadier.CommandDispatcher;
+import de.melanx.invswitch.commands.AddWeatherCommand;
+import de.melanx.invswitch.commands.SwitchCommand;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 import net.minecraftforge.common.MinecraftForge;
@@ -21,6 +23,7 @@ public class InventorySwitch {
 
     public static void register(CommandDispatcher<CommandSource> dispatcher) {
         dispatcher.register(Commands.literal(MODID)
+                .then(AddWeatherCommand.register())
                 .then(SwitchCommand.register())
         );
     }
