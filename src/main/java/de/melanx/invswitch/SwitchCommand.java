@@ -1,6 +1,7 @@
 package de.melanx.invswitch;
 
 import com.mojang.brigadier.CommandDispatcher;
+import com.mojang.brigadier.arguments.BoolArgumentType;
 import com.mojang.brigadier.builder.ArgumentBuilder;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
@@ -15,6 +16,7 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class SwitchCommand {
@@ -25,11 +27,13 @@ public class SwitchCommand {
                     return cs.hasPermissionLevel(3);
                 }).then(Commands.argument("target1", EntityArgument.player())
                         .then(Commands.argument("target2", EntityArgument.player()).executes((command) -> {
-                            return changeInventory(command.getSource(), EntityArgument.getEntity(command, "target1"), EntityArgument.getEntity(command, "target2"));
-                        })));
+                            return changeInventory(command.getSource(), EntityArgument.getEntity(command, "target1"), EntityArgument.getEntity(command, "target2"), false);
+                        }).then(Commands.argument("shuffle", BoolArgumentType.bool()).executes((command) -> {
+                            return changeInventory(command.getSource(), EntityArgument.getEntity(command, "target1"), EntityArgument.getEntity(command, "target2"), BoolArgumentType.getBool(command, "shuffle"));
+                        }))));
     }
 
-    private static int changeInventory(CommandSource source, Entity target1, Entity target2) {
+    private static int changeInventory(CommandSource source, Entity target1, Entity target2, boolean shuffle) {
         PlayerEntity player1 = null;
         PlayerEntity player2 = null;
         PlayerInventory inventory1 = null;
@@ -69,9 +73,9 @@ public class SwitchCommand {
         }
         List<ItemStack> invCache1 = getCache(inventory1);
         List<ItemStack> invCache2 = getCache(inventory2);
-        setInventory(inventory1, invCache2);
-        setInventory(inventory2, invCache1);
-        ITextComponent textComponent = new TranslationTextComponent(InventorySwitch.MODID + ".change_inventories", player1.getDisplayName().getFormattedText(), player2.getDisplayName().getFormattedText());
+        setInventory(inventory1, invCache2, shuffle);
+        setInventory(inventory2, invCache1, shuffle);
+        ITextComponent textComponent = new TranslationTextComponent(InventorySwitch.MODID + ".change_inventories" + (shuffle ? "_shuffled" : ""), player1.getDisplayName().getFormattedText(), player2.getDisplayName().getFormattedText());
         source.sendFeedback(textComponent, true);
         return 1;
     }
@@ -84,8 +88,9 @@ public class SwitchCommand {
         return cache;
     }
 
-    private static void setInventory(PlayerInventory inv, List<ItemStack> cache) {
+    private static void setInventory(PlayerInventory inv, List<ItemStack> cache, boolean shuffle) {
         inv.clear();
+        if (shuffle) Collections.shuffle(cache);
         for (int i = 0; i < cache.size(); ++i) {
             inv.add(i, cache.get(i));
         }

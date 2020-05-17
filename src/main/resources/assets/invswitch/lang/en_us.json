@@ -1,5 +1,6 @@
 {
   "invswitch.change_inventories": "%s and %s changed their inventories",
+  "invswitch.change_inventories_shuffled": "%s and %s changed their inventories but shuffled",
   "invswitch.player_null": "One of the player was not found",
   "invswitch.inv_null": "One of the inventories was not found",
   "invswitch.player_equals": "It's the same player",
