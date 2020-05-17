@@ -1,6 +1,5 @@
 package de.melanx.invswitch;
 
-import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.BoolArgumentType;
 import com.mojang.brigadier.builder.ArgumentBuilder;
 import net.minecraft.command.CommandSource;
@@ -50,34 +49,49 @@ public class SwitchCommand {
         if (player1 == null || player2 == null) {
             ITextComponent textComponent = new TranslationTextComponent(InventorySwitch.MODID + ".player_null");
             textComponent.setStyle(red);
-            source.sendFeedback(textComponent, true);
+            InventorySwitch.LOGGER.info(textComponent.getString());
+            source.sendFeedback(textComponent, false);
             return 0;
         }
         if (inventory1 == null || inventory2 == null) {
             ITextComponent textComponent = new TranslationTextComponent(InventorySwitch.MODID + ".inv_null");
             textComponent.setStyle(red);
-            source.sendFeedback(textComponent, true);
+            InventorySwitch.LOGGER.info(textComponent.getString());
+            source.sendFeedback(textComponent, false);
             return 0;
         }
         if (player1 == player2) {
             ITextComponent textComponent = new TranslationTextComponent(InventorySwitch.MODID + ".player_equals");
             textComponent.setStyle(red);
-            source.sendFeedback(textComponent, true);
+            InventorySwitch.LOGGER.info(textComponent.getString());
+            source.sendFeedback(textComponent, false);
             return 0;
         }
         if (inventory1 == inventory2) {
             ITextComponent textComponent = new TranslationTextComponent(InventorySwitch.MODID + ".inv_equals");
             textComponent.setStyle(red);
-            source.sendFeedback(textComponent, true);
+            InventorySwitch.LOGGER.info(textComponent.getString());
+            source.sendFeedback(textComponent, false);
             return 0;
         }
         List<ItemStack> invCache1 = getCache(inventory1);
         List<ItemStack> invCache2 = getCache(inventory2);
+        InventorySwitch.LOGGER.info(String.format("Inventory from %s contains %s stacks", player1.getDisplayName().getString(), countStacks(invCache1)));
+        InventorySwitch.LOGGER.info(String.format("Inventory from %s contains %s stacks", player2.getDisplayName().getString(), countStacks(invCache2)));
         setInventory(inventory1, invCache2, shuffle);
         setInventory(inventory2, invCache1, shuffle);
         ITextComponent textComponent = new TranslationTextComponent(InventorySwitch.MODID + ".change_inventories" + (shuffle ? "_shuffled" : ""), player1.getDisplayName().getFormattedText(), player2.getDisplayName().getFormattedText());
-        source.sendFeedback(textComponent, true);
+        InventorySwitch.LOGGER.info(textComponent.getString());
+        source.sendFeedback(textComponent, false);
         return 1;
+    }
+
+    private static int countStacks(List<ItemStack> invCache) {
+        int i = 0;
+        for (ItemStack stack : invCache) {
+            if (stack != ItemStack.EMPTY) i++;
+        }
+        return i;
     }
 
     private static List<ItemStack> getCache(PlayerInventory inv) {
@@ -89,7 +103,6 @@ public class SwitchCommand {
     }
 
     private static void setInventory(PlayerInventory inv, List<ItemStack> cache, boolean shuffle) {
-        inv.clear();
         if (shuffle) Collections.shuffle(cache);
         for (int i = 0; i < cache.size(); ++i) {
             inv.add(i, cache.get(i));

@@ -6,11 +6,14 @@ import net.minecraft.command.Commands;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 @Mod(InventorySwitch.MODID)
 public class InventorySwitch {
 
     public static final String MODID = "invswitch";
+    public static Logger LOGGER = LogManager.getLogger(MODID);
 
     public InventorySwitch() {
         MinecraftForge.EVENT_BUS.addListener(this::serverLoad);
