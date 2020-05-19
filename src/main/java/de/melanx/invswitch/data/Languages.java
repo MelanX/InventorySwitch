@@ -1,6 +1,7 @@
 package de.melanx.invswitch.data;
 
 import de.melanx.invswitch.InventorySwitch;
+import de.melanx.invswitch.Lib;
 import de.melanx.invswitch.items.Registration;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.LanguageProvider;
@@ -8,9 +9,6 @@ import net.minecraftforge.common.data.LanguageProvider;
 import java.util.Locale;
 
 public class Languages {
-
-    private static String COMMAND_PREFIX = "command." + InventorySwitch.MODID + ".";
-    private static String ITEM_PREFIX = "item." + InventorySwitch.MODID + ".";
 
     public Languages(DataGenerator generator) {
         generator.addProvider(new English(generator));
@@ -38,11 +36,11 @@ public class Languages {
         }
 
         private void addCommand(String key, String value) {
-            add(COMMAND_PREFIX + key, value);
+            add(Lib.COMMAND_PREFIX + key, value);
         }
 
         private void addItem(String key, String value) {
-            add(ITEM_PREFIX + key, value);
+            add(Lib.ITEM_PREFIX + key, value);
         }
     }
 
@@ -67,11 +65,11 @@ public class Languages {
         }
 
         private void addCommand(String key, String value) {
-            add(COMMAND_PREFIX + key, value);
+            add(Lib.COMMAND_PREFIX + key, value);
         }
 
         private void addItem(String key, String value) {
-            add(ITEM_PREFIX + key, value);
+            add(Lib.ITEM_PREFIX + key, value);
         }
     }
 }

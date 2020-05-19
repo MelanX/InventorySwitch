@@ -3,6 +3,7 @@ package de.melanx.invswitch.commands;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.builder.ArgumentBuilder;
 import de.melanx.invswitch.InventorySwitch;
+import de.melanx.invswitch.Lib;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 import net.minecraft.util.text.ITextComponent;
@@ -66,7 +67,7 @@ public class AddWeatherCommand {
         worldInfo.setThunderTime(totalDuration);
         worldInfo.setRaining(true);
         worldInfo.setThundering(false);
-        ITextComponent textComponent = new TranslationTextComponent(InventorySwitch.MODID + ".weather.rain", totalDuration / 20);
+        ITextComponent textComponent = new TranslationTextComponent(Lib.COMMAND_PREFIX + "weather.rain", totalDuration / 20);
         InventorySwitch.LOGGER.info(String.format("Set rain duration to %s seconds", totalDuration / 20));
         source.sendFeedback(textComponent, false);
         return totalDuration;
@@ -78,7 +79,7 @@ public class AddWeatherCommand {
         worldInfo.setThunderTime(totalDuration);
         worldInfo.setRaining(true);
         worldInfo.setThundering(true);
-        ITextComponent textComponent = new TranslationTextComponent(InventorySwitch.MODID + ".weather.thunder", totalDuration / 20);
+        ITextComponent textComponent = new TranslationTextComponent(Lib.COMMAND_PREFIX + ".weather.thunder", totalDuration / 20);
         InventorySwitch.LOGGER.info(String.format("Set thunder duration to %s seconds", totalDuration / 20));
         source.sendFeedback(textComponent, false);
         return totalDuration;

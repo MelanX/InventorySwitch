@@ -3,6 +3,7 @@ package de.melanx.invswitch.commands;
 import com.mojang.brigadier.arguments.BoolArgumentType;
 import com.mojang.brigadier.builder.ArgumentBuilder;
 import de.melanx.invswitch.InventorySwitch;
+import de.melanx.invswitch.Lib;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 import net.minecraft.command.arguments.EntityArgument;
@@ -48,28 +49,28 @@ public class SwitchCommand {
             inventory2 = player2.inventory;
         }
         if (player1 == null || player2 == null) {
-            ITextComponent textComponent = new TranslationTextComponent(InventorySwitch.MODID + ".player_null");
+            ITextComponent textComponent = new TranslationTextComponent(Lib.COMMAND_PREFIX + "player_null");
             textComponent.setStyle(red);
             InventorySwitch.LOGGER.error("One of the player was not found");
             source.sendFeedback(textComponent, false);
             return 0;
         }
         if (inventory1 == null || inventory2 == null) {
-            ITextComponent textComponent = new TranslationTextComponent(InventorySwitch.MODID + ".inv_null");
+            ITextComponent textComponent = new TranslationTextComponent(Lib.COMMAND_PREFIX + "inv_null");
             textComponent.setStyle(red);
             InventorySwitch.LOGGER.error("One of the inventories was not found");
             source.sendFeedback(textComponent, false);
             return 0;
         }
         if (player1 == player2) {
-            ITextComponent textComponent = new TranslationTextComponent(InventorySwitch.MODID + ".player_equals");
+            ITextComponent textComponent = new TranslationTextComponent(Lib.COMMAND_PREFIX + "player_equals");
             textComponent.setStyle(red);
             InventorySwitch.LOGGER.error("It's the same player");
             source.sendFeedback(textComponent, false);
             return 0;
         }
         if (inventory1 == inventory2) {
-            ITextComponent textComponent = new TranslationTextComponent(InventorySwitch.MODID + ".inv_equals");
+            ITextComponent textComponent = new TranslationTextComponent(Lib.COMMAND_PREFIX + "inv_equals");
             textComponent.setStyle(red);
             InventorySwitch.LOGGER.error("Both players share one inventory");
             source.sendFeedback(textComponent, false);
@@ -81,7 +82,7 @@ public class SwitchCommand {
         InventorySwitch.LOGGER.info(String.format("Inventory from %s contains %s stacks", player2.getDisplayName().getString(), countStacks(invCache2)));
         setInventory(inventory1, invCache2, shuffle);
         setInventory(inventory2, invCache1, shuffle);
-        ITextComponent textComponent = new TranslationTextComponent(InventorySwitch.MODID + ".change_inventories" + (shuffle ? "_shuffled" : ""), player1.getDisplayName().getFormattedText(), player2.getDisplayName().getFormattedText());
+        ITextComponent textComponent = new TranslationTextComponent(Lib.COMMAND_PREFIX + "change_inventories" + (shuffle ? "_shuffled" : ""), player1.getDisplayName().getFormattedText(), player2.getDisplayName().getFormattedText());
         InventorySwitch.LOGGER.info(String.format("%s and %s changed their inventories" + (shuffle ? "but shuffled" : ""), player1.getDisplayName().getString(), player2.getDisplayName().getString()));
         source.sendFeedback(textComponent, false);
         return 1;
