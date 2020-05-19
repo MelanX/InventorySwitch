@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "invswitch:items/upside_down_goggles"
+  }
+}

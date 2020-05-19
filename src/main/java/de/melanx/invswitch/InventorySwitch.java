@@ -3,6 +3,8 @@ package de.melanx.invswitch;
 import com.mojang.brigadier.CommandDispatcher;
 import de.melanx.invswitch.commands.AddWeatherCommand;
 import de.melanx.invswitch.commands.SwitchCommand;
+import de.melanx.invswitch.items.Events;
+import de.melanx.invswitch.items.Registration;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 import net.minecraftforge.common.MinecraftForge;
@@ -18,6 +20,8 @@ public class InventorySwitch {
     public static Logger LOGGER = LogManager.getLogger(MODID);
 
     public InventorySwitch() {
+        new Events();
+        Registration.init();
         MinecraftForge.EVENT_BUS.addListener(this::serverLoad);
     }
 
