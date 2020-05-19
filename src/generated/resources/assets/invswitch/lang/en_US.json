@@ -1,0 +1,11 @@
+{
+  "command.invswitch.change_inventories": "%s and %s changed their inventories",
+  "command.invswitch.change_inventories_shuffled": "%s and %s changed their inventories but shuffled",
+  "command.invswitch.inv_equals": "Both players share one inventory",
+  "command.invswitch.inv_null": "One of the inventories was not found",
+  "command.invswitch.player_equals": "It's the same player",
+  "command.invswitch.player_null": "One of the player was not found",
+  "command.invswitch.weather.rain": "Set rain duration to %s seconds",
+  "command.invswitch.weather.thunder": "Set thunder duration to %s seconds",
+  "item.invswitch.upside_down_goggles": "Upside Down Goggles"
+}

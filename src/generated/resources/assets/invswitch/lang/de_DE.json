@@ -1,0 +1,11 @@
+{
+  "command.invswitch.change_inventories": "%s und %s haben ihre Inventare getauscht",
+  "command.invswitch.change_inventories_shuffled": "%s und %s haben ihre Inventare gemischt getauscht",
+  "command.invswitch.inv_equals": "Beide Spieler teilen sich ein Inventar",
+  "command.invswitch.inv_null": "Eines der Inventare wurde nicht gefunden",
+  "command.invswitch.player_equals": "Es ist derselbe Spieler",
+  "command.invswitch.player_null": "Einer der Spieler wurde nicht gefunden",
+  "command.invswitch.weather.rain": "Regendauer auf %s Sekunden gesetzt",
+  "command.invswitch.weather.thunder": "Gewitterdauer auf %s Sekunden gesetzt",
+  "item.invswitch.upside_down_goggles": "Kopfstehende Schutzbrille"
+}
