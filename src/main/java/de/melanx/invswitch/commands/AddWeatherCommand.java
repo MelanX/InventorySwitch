@@ -35,7 +35,7 @@ public class AddWeatherCommand {
         worldInfo.setRaining(true);
         worldInfo.setThundering(false);
         ITextComponent textComponent = new TranslationTextComponent(InventorySwitch.MODID + ".weather.add.rain", totalDuration / 20);
-        InventorySwitch.LOGGER.info(textComponent.getString());
+        InventorySwitch.LOGGER.info(String.format("Set rain duration to %s seconds", totalDuration / 20));
         source.sendFeedback(textComponent, false);
         return totalDuration;
     }
@@ -49,7 +49,7 @@ public class AddWeatherCommand {
         worldInfo.setRaining(true);
         worldInfo.setThundering(true);
         ITextComponent textComponent = new TranslationTextComponent(InventorySwitch.MODID + ".weather.add.thunder", totalDuration / 20);
-        InventorySwitch.LOGGER.info(textComponent.getString());
+        InventorySwitch.LOGGER.info(String.format("Set thunder duration to %s seconds", totalDuration / 20));
         source.sendFeedback(textComponent, false);
         return totalDuration;
     }
