@@ -5,7 +5,7 @@
   "invswitch.inv_null": "One of the inventories was not found",
   "invswitch.player_equals": "It's the same player",
   "invswitch.inv_equals": "Both players share one inventory",
-  "invswitch.weather.add.rain": "Set rain duration to %s seconds",
-  "invswitch.weather.add.thunder": "Set thunder duration to %s seconds",
+  "invswitch.weather.rain": "Set rain duration to %s seconds",
+  "invswitch.weather.thunder": "Set thunder duration to %s seconds",
   "item.invswitch.upside_down_goggles": "Upside Down Goggles"
 }

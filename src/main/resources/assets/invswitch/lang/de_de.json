@@ -5,7 +5,7 @@
   "invswitch.inv_null": "Eines der Inventare wurde nicht gefunden",
   "invswitch.player_equals": "Es ist derselbe Spieler",
   "invswitch.inv_equals": "Beide Spieler teilen sich ein Inventar",
-  "invswitch.weather.add.rain": "Regendauer auf %s Sekunden gesetzt",
-  "invswitch.weather.add.thunder": "Gewitterdauer auf %s Sekunden gesetzt",
+  "invswitch.weather.rain": "Regendauer auf %s Sekunden gesetzt",
+  "invswitch.weather.thunder": "Gewitterdauer auf %s Sekunden gesetzt",
   "item.invswitch.upside_down_goggles": "Kopfstehende Schutzbrille"
 }
