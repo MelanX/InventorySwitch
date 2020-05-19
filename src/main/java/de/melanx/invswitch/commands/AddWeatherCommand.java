@@ -3,7 +3,7 @@ package de.melanx.invswitch.commands;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.builder.ArgumentBuilder;
 import de.melanx.invswitch.InventorySwitch;
-import de.melanx.invswitch.Lib;
+import de.melanx.invswitch.util.Lib;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 import net.minecraft.util.text.ITextComponent;

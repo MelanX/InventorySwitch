@@ -2,7 +2,7 @@
 This class is taken by "Stupid Things": https://github.com/Furgl/Stupid-Things/blob/1.12/src/main/java/furgl/stupidThings/client/model/ModelUpsideDownGoggles.java
  */
 
-package de.melanx.invswitch.items.models;
+package de.melanx.invswitch.models;
 
 import com.mojang.blaze3d.platform.GlStateManager;
 import net.minecraft.client.renderer.entity.model.BipedModel;

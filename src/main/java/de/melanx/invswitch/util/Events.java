@@ -1,6 +1,7 @@
-package de.melanx.invswitch.items;
+package de.melanx.invswitch.util;
 
 import de.melanx.invswitch.InventorySwitch;
+import de.melanx.invswitch.items.Registration;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.inventory.EquipmentSlotType;

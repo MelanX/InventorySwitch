@@ -3,7 +3,7 @@ package de.melanx.invswitch.commands;
 import com.mojang.brigadier.arguments.BoolArgumentType;
 import com.mojang.brigadier.builder.ArgumentBuilder;
 import de.melanx.invswitch.InventorySwitch;
-import de.melanx.invswitch.Lib;
+import de.melanx.invswitch.util.Lib;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 import net.minecraft.command.arguments.EntityArgument;

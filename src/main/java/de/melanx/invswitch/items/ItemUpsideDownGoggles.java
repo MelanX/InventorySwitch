@@ -6,7 +6,7 @@ The source class can be found here: https://github.com/Furgl/Stupid-Things/blob/
 package de.melanx.invswitch.items;
 
 import de.melanx.invswitch.InventorySwitch;
-import de.melanx.invswitch.items.models.ModelUpsideDownGoggles;
+import de.melanx.invswitch.models.ModelUpsideDownGoggles;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;

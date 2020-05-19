@@ -1,4 +1,6 @@
-package de.melanx.invswitch;
+package de.melanx.invswitch.util;
+
+import de.melanx.invswitch.InventorySwitch;
 
 public class Lib {
 
