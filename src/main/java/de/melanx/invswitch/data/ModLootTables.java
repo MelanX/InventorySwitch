@@ -14,9 +14,11 @@ import net.minecraft.util.registry.Registry;
 import net.minecraft.world.storage.loot.*;
 import net.minecraft.world.storage.loot.functions.EnchantRandomly;
 import net.minecraft.world.storage.loot.functions.EnchantWithLevels;
+import net.minecraft.world.storage.loot.functions.SetCount;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
@@ -48,8 +50,8 @@ public class ModLootTables extends LootTableProvider {
                             .addEntry(ItemLootEntry.builder(Items.BOOK).acceptFunction(EnchantRandomly.func_215900_c()).weight(3))
                             .addEntry(ItemLootEntry.builder(Items.ENCHANTED_GOLDEN_APPLE)))
                     .addLootPool(LootPool.builder()
-                            .rolls(ConstantRange.of(7))
-                            .addEntry(TagLootEntry.func_216176_b(ModTags.ModItems.FOOD))));
+                            .rolls(ConstantRange.of(3))
+                            .addEntry(TagLootEntry.func_216176_b(ModTags.ModItems.FOOD).acceptFunction(SetCount.builder(RandomValueRange.of(1.0F, 5.0F))))));
         }
     }
 }
