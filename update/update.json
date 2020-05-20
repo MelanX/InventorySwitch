@@ -1,8 +1,9 @@
 {
   "promos": {
-    "1.14.4-latest": "1.1"
+    "1.14.4-latest": "1.2"
   },
   "1.14.4": {
+    "1.2": "Added lootbox item\nAdded recipe for goggles",
     "1.1": "Added upside down goggles\nAdded ability to remove weather duration\nFixed thunder duration\nImproved logging for servers",
     "1.0.4": "Added weather time add command",
     "1.0.3": "Added a lot of logging and improved logging",
