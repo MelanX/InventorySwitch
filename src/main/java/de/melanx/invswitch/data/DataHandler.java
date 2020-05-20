@@ -15,6 +15,10 @@ public class DataHandler {
         DataGenerator generator = event.getGenerator();
         ExistingFileHelper helper = event.getExistingFileHelper();
 
+        if (event.includeServer()) {
+            generator.addProvider(new ModTags.ModItemTags(generator));
+            generator.addProvider(new ModLootTables(generator));
+        }
         if (event.includeClient()) {
             generator.addProvider(new ItemModels(generator, helper));
             new Languages(generator);

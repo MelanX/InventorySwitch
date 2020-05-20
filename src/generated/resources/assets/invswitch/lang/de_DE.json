@@ -7,5 +7,6 @@
   "command.invswitch.player_null": "Einer der Spieler wurde nicht gefunden",
   "command.invswitch.weather.rain": "Regendauer auf %s Sekunden gesetzt",
   "command.invswitch.weather.thunder": "Gewitterdauer auf %s Sekunden gesetzt",
+  "item.invswitch.lootbox": "Lootbox",
   "item.invswitch.upside_down_goggles": "Kopfstehende Schutzbrille"
 }

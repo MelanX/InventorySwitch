@@ -33,6 +33,7 @@ public class Languages {
             addCommand("weather.thunder", "Set thunder duration to %s seconds");
 
             addItem(Registration.upside_gown_goggles.get().getRegistryName().getPath(), "Upside Down Goggles");
+            addItem(Registration.loot_box.get().getRegistryName().getPath(), "Lootbox");
         }
 
         private void addCommand(String key, String value) {
@@ -62,6 +63,7 @@ public class Languages {
             addCommand("weather.thunder", "Gewitterdauer auf %s Sekunden gesetzt");
 
             addItem(Registration.upside_gown_goggles.get().getRegistryName().getPath(), "Kopfstehende Schutzbrille");
+            addItem(Registration.loot_box.get().getRegistryName().getPath(), "Lootbox");
         }
 
         private void addCommand(String key, String value) {

@@ -7,5 +7,6 @@
   "command.invswitch.player_null": "One of the player was not found",
   "command.invswitch.weather.rain": "Set rain duration to %s seconds",
   "command.invswitch.weather.thunder": "Set thunder duration to %s seconds",
+  "item.invswitch.lootbox": "Lootbox",
   "item.invswitch.upside_down_goggles": "Upside Down Goggles"
 }
