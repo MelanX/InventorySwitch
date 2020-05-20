@@ -18,6 +18,7 @@ public class DataHandler {
         if (event.includeServer()) {
             generator.addProvider(new ModTags.ModItemTags(generator));
             generator.addProvider(new ModLootTables(generator));
+            generator.addProvider(new Recipes(generator));
         }
         if (event.includeClient()) {
             generator.addProvider(new ItemModels(generator, helper));
