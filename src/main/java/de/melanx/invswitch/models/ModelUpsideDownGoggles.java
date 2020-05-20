@@ -13,18 +13,18 @@ import net.minecraft.entity.item.ArmorStandEntity;
 
 public class ModelUpsideDownGoggles extends BipedModel {
 
-    private RendererModel backstrap;
-    private RendererModel lefteye;
-    private RendererModel righteye;
-    private RendererModel rightstrap;
-    private RendererModel leftstrap;
-    private RendererModel bigfront;
-    private RendererModel leftglass;
-    private RendererModel rightglass;
-    private RendererModel rightslant;
-    private RendererModel leftslant2;
-    private RendererModel leftslant;
-    private RendererModel rightslant2;
+    private final RendererModel backstrap;
+    private final RendererModel lefteye;
+    private final RendererModel righteye;
+    private final RendererModel rightstrap;
+    private final RendererModel leftstrap;
+    private final RendererModel bigfront;
+    private final RendererModel leftglass;
+    private final RendererModel rightglass;
+    private final RendererModel rightslant;
+    private final RendererModel leftslant2;
+    private final RendererModel leftslant;
+    private final RendererModel rightslant2;
 
     public ModelUpsideDownGoggles() {
         this.textureWidth = 64;
@@ -96,8 +96,7 @@ public class ModelUpsideDownGoggles extends BipedModel {
         if (this.isChild) {
             GlStateManager.scalef(0.75F, 0.75F, 0.75F);
             GlStateManager.translatef(0.0F, 16.0F * scale, 0.0F);
-        }
-        else {
+        } else {
             if (entityIn.getPose() == Pose.SNEAKING)
                 GlStateManager.translatef(0.0F, 0.2F, 0.0F);
         }

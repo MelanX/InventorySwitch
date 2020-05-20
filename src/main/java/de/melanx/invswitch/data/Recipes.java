@@ -26,6 +26,6 @@ public class Recipes extends RecipeProvider {
                 .patternLine("I I")
                 .patternLine("GRG")
                 .addCriterion("has_material", hasItem(Tags.Items.DUSTS_REDSTONE))
-        .build(consumer, new ResourceLocation(InventorySwitch.MODID, Registration.upside_gown_goggles.get().getRegistryName().getPath()));
+                .build(consumer, new ResourceLocation(InventorySwitch.MODID, Registration.upside_gown_goggles.get().getRegistryName().getPath()));
     }
 }

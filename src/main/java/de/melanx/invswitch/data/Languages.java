@@ -1,8 +1,8 @@
 package de.melanx.invswitch.data;
 
 import de.melanx.invswitch.InventorySwitch;
-import de.melanx.invswitch.util.Lib;
 import de.melanx.invswitch.items.Registration;
+import de.melanx.invswitch.util.Lib;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.LanguageProvider;
 
