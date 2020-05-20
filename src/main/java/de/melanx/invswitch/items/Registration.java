@@ -16,6 +16,7 @@ public class Registration {
     public static final Item.Properties itemProps = new Item.Properties().group(ItemGroup.MISC);
 
     public static final RegistryObject<Item> upside_gown_goggles = ITEMS.register("upside_down_goggles", () -> new ItemUpsideDownGoggles(itemProps));
+    public static final RegistryObject<Item> loot_box = ITEMS.register("lootbox", () -> new ItemLootBox(itemProps));
 
     public static void init() {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
