@@ -7,6 +7,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Effect;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.api.distmarker.Dist;
@@ -18,6 +19,7 @@ import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = InventorySwitch.MODID)
@@ -57,17 +59,22 @@ public class Events {
 
     @SubscribeEvent
     public static void onHit(LivingAttackEvent event) {
-        Entity entity = event.getSource().getTrueSource();
+        DamageSource source = event.getSource();
+        Entity entity = source.getTrueSource();
         if (entity instanceof PlayerEntity) {
             PlayerEntity player = (PlayerEntity) entity;
             if (hasEffect(player, Registration.freeze.get())) {
                 event.setCanceled(true);
             }
         }
+        LivingEntity victim = event.getEntityLiving();
+        if (source == DamageSource.WITHER && hasEffect(victim, Registration.witherResistance.get())) {
+            event.setCanceled(true);
+        }
     }
 
-    private static boolean hasEffect(PlayerEntity player, Effect effect) {
-        return player.getActivePotionEffect(effect) != null;
+    private static boolean hasEffect(LivingEntity entity, Effect effect) {
+        return entity.getActivePotionEffect(effect) != null;
     }
 
 }
