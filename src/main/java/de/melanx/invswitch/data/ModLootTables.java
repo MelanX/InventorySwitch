@@ -3,7 +3,7 @@ package de.melanx.invswitch.data;
 import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Pair;
 import de.melanx.invswitch.items.ItemLootBox;
-import de.melanx.invswitch.items.Registration;
+import de.melanx.invswitch.util.Registration;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.LootTableProvider;
 import net.minecraft.data.loot.FishingLootTables;

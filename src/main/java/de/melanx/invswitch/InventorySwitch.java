@@ -3,7 +3,8 @@ package de.melanx.invswitch;
 import com.mojang.brigadier.CommandDispatcher;
 import de.melanx.invswitch.commands.AddWeatherCommand;
 import de.melanx.invswitch.commands.SwitchCommand;
-import de.melanx.invswitch.items.Registration;
+import de.melanx.invswitch.potion.ModPotionBrewing;
+import de.melanx.invswitch.util.Registration;
 import de.melanx.invswitch.util.Events;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
@@ -22,6 +23,7 @@ public class InventorySwitch {
     public InventorySwitch() {
         new Events();
         Registration.init();
+        ModPotionBrewing.init();
         MinecraftForge.EVENT_BUS.addListener(this::serverLoad);
     }
 

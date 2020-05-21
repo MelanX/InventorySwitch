@@ -1,7 +1,7 @@
 package de.melanx.invswitch.data;
 
 import de.melanx.invswitch.InventorySwitch;
-import de.melanx.invswitch.items.Registration;
+import de.melanx.invswitch.util.Registration;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.model.generators.ExistingFileHelper;
