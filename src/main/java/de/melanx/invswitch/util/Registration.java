@@ -7,9 +7,8 @@ import de.melanx.invswitch.potion.FreezeEffect;
 import de.melanx.invswitch.potion.WitherResistanceEffect;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
-import net.minecraft.potion.Effect;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Potion;
+import net.minecraft.item.Items;
+import net.minecraft.potion.*;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -43,5 +42,13 @@ public class Registration {
         InventorySwitch.LOGGER.info("Effects registered");
         POTIONS.register(bus);
         InventorySwitch.LOGGER.info("Potions registered");
+    }
+
+    public static void registerBrewingRecipes() {
+        PotionBrewing.addMix(Potions.AWKWARD, Items.PACKED_ICE, freezePotion.get());
+        PotionBrewing.addMix(freezePotion.get(), Items.REDSTONE, longFreezePotion.get());
+
+        PotionBrewing.addMix(Potions.AWKWARD, Items.WITHER_SKELETON_SKULL, witherResistancePotion.get());
+        PotionBrewing.addMix(witherResistancePotion.get(), Items.REDSTONE, longWitherResistancePotion.get());
     }
 }

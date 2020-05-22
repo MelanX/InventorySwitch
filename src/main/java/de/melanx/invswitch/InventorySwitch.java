@@ -3,14 +3,15 @@ package de.melanx.invswitch;
 import com.mojang.brigadier.CommandDispatcher;
 import de.melanx.invswitch.commands.AddWeatherCommand;
 import de.melanx.invswitch.commands.SwitchCommand;
-import de.melanx.invswitch.potion.ModPotionBrewing;
 import de.melanx.invswitch.util.Events;
 import de.melanx.invswitch.util.Registration;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -21,9 +22,9 @@ public class InventorySwitch {
     public static Logger LOGGER = LogManager.getLogger(MODID);
 
     public InventorySwitch() {
+        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setupCommon);
         new Events();
         Registration.init();
-        ModPotionBrewing.init();
         MinecraftForge.EVENT_BUS.addListener(this::serverLoad);
     }
 
@@ -35,7 +36,11 @@ public class InventorySwitch {
     }
 
     private void serverLoad(FMLServerStartingEvent event) {
-        System.out.println(event.getCommandDispatcher());
         register(event.getCommandDispatcher());
+    }
+
+    private void setupCommon(final FMLCommonSetupEvent event) {
+        LOGGER.info("COMMON SETUP EVENT");
+        Registration.registerBrewingRecipes();
     }
 }
