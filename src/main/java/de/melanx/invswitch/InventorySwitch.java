@@ -40,7 +40,6 @@ public class InventorySwitch {
     }
 
     private void setupCommon(final FMLCommonSetupEvent event) {
-        LOGGER.info("COMMON SETUP EVENT");
         Registration.registerBrewingRecipes();
     }
 }
