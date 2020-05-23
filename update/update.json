@@ -1,8 +1,9 @@
 {
   "promos": {
-    "1.14.4-latest": "1.3"
+    "1.14.4-latest": "1.3.1"
   },
   "1.14.4": {
+    "1.3.1": "Feature spawn eggs spawn entities (lootbox)\nFixed languages",
     "1.3": "Added freeze effect\nAdded wither resistance effect",
     "1.2": "Added lootbox item\nAdded recipe for goggles",
     "1.1": "Added upside down goggles\nAdded ability to remove weather duration\nFixed thunder duration\nImproved logging for servers",
