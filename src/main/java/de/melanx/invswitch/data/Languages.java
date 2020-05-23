@@ -20,7 +20,7 @@ public class Languages {
     private static class English extends LanguageProvider {
 
         public English(DataGenerator generator) {
-            super(generator, InventorySwitch.MODID, Locale.US.toString());
+            super(generator, InventorySwitch.MODID, Locale.US.toString().toLowerCase());
         }
 
         @Override
@@ -63,7 +63,7 @@ public class Languages {
     private static class German extends LanguageProvider {
 
         public German(DataGenerator generator) {
-            super(generator, InventorySwitch.MODID, Locale.GERMANY.toString());
+            super(generator, InventorySwitch.MODID, Locale.GERMANY.toString().toLowerCase());
         }
 
         @Override
