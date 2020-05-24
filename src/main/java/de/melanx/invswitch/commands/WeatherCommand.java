@@ -11,7 +11,7 @@ import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.storage.WorldInfo;
 
-public class AddWeatherCommand {
+public class WeatherCommand {
 
     public static ArgumentBuilder<CommandSource, ?> register() {
         return Commands.literal("weather")
