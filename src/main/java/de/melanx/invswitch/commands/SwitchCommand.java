@@ -105,6 +105,7 @@ public class SwitchCommand {
     }
 
     private static void setInventory(PlayerInventory inv, List<ItemStack> cache, boolean shuffle) {
+        inv.clear();
         if (shuffle) Collections.shuffle(cache);
         for (int i = 0; i < cache.size(); ++i) {
             inv.add(i, cache.get(i));
