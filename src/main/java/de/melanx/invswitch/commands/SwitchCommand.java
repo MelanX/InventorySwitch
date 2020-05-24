@@ -17,6 +17,7 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -101,6 +102,7 @@ public class SwitchCommand {
         for (int i = 0; i < inv.getSizeInventory(); ++i) {
             cache.add(i, inv.getStackInSlot(i));
         }
+        InventorySwitch.LOGGER.debug(Arrays.toString(cache.toArray()));
         return cache;
     }
 
