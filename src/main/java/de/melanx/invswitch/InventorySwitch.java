@@ -1,8 +1,8 @@
 package de.melanx.invswitch;
 
 import com.mojang.brigadier.CommandDispatcher;
-import de.melanx.invswitch.commands.WeatherCommand;
 import de.melanx.invswitch.commands.SwitchCommand;
+import de.melanx.invswitch.commands.WeatherCommand;
 import de.melanx.invswitch.util.Events;
 import de.melanx.invswitch.util.Registration;
 import net.minecraft.command.CommandSource;
