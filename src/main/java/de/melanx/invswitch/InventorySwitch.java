@@ -3,12 +3,14 @@ package de.melanx.invswitch;
 import com.mojang.brigadier.CommandDispatcher;
 import de.melanx.invswitch.commands.SwitchCommand;
 import de.melanx.invswitch.commands.WeatherCommand;
+import de.melanx.invswitch.rendering.DrawEntriesHandler;
 import de.melanx.invswitch.util.Events;
 import de.melanx.invswitch.util.Registration;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -26,6 +28,7 @@ public class InventorySwitch {
         new Events();
         Registration.init();
         MinecraftForge.EVENT_BUS.addListener(this::serverLoad);
+        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::onClientSetup);
     }
 
     public static void register(CommandDispatcher<CommandSource> dispatcher) {
@@ -33,6 +36,10 @@ public class InventorySwitch {
                 .then(WeatherCommand.register())
                 .then(SwitchCommand.register())
         );
+    }
+
+    private void onClientSetup(final FMLClientSetupEvent event) {
+        MinecraftForge.EVENT_BUS.register(new DrawEntriesHandler());
     }
 
     private void serverLoad(FMLServerStartingEvent event) {
