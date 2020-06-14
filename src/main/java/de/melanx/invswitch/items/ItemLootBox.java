@@ -31,7 +31,7 @@ public class ItemLootBox extends Item {
             List<ItemStack> items = table.generate(builder.build(LootParameterSets.FISHING));
             for (ItemStack item : items) {
                 if (!playerIn.inventory.addItemStackToInventory(item)) {
-                    worldIn.addEntity(new ItemEntity(worldIn, playerIn.posX, playerIn.posY, playerIn.posZ, item));
+                    worldIn.addEntity(new ItemEntity(worldIn, playerIn.getPosX(), playerIn.getPosY(), playerIn.getPosZ(), item));
                 }
             }
             playerIn.getHeldItem(handIn).shrink(1);

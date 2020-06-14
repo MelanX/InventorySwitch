@@ -37,11 +37,11 @@ public class Events {
     @SubscribeEvent
     public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
         PlayerEntity player = event.player;
-        if (playerPosition == null) playerPosition = new Vec3d(player.posX, player.posY, player.posZ);
+        if (playerPosition == null) playerPosition = new Vec3d(player.getPosX(), player.getPosY(), player.getPosZ());
         if (hasEffect(player, Registration.freeze.get())) {
             player.setPosition(playerPosition.getX(), playerPosition.getY(), playerPosition.getZ());
         } else {
-            playerPosition = new Vec3d(player.posX, player.posY, player.posZ);
+            playerPosition = new Vec3d(player.getPosX(), player.getPosY(), player.getPosZ());
         }
     }
 

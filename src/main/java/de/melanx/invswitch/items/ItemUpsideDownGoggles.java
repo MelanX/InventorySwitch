@@ -15,27 +15,25 @@ import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.LazyLoadBase;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraft.util.LazyValue;
 import net.minecraftforge.fml.DistExecutor;
 
 import javax.annotation.Nullable;
 
 public class ItemUpsideDownGoggles extends ArmorItem {
 
-    private final LazyLoadBase<BipedModel> model;
+    private final LazyValue<BipedModel> model;
 
     public ItemUpsideDownGoggles(Item.Properties builder) {
         super(ArmorMaterial.LEATHER, EquipmentSlotType.HEAD, builder);
-        this.model = DistExecutor.runForDist(() -> () -> new LazyLoadBase<>(ModelUpsideDownGoggles::new),
+        this.model = DistExecutor.runForDist(() -> () -> new LazyValue<>(ModelUpsideDownGoggles::new),
                 () -> () -> null);
     }
 
+    @Nullable
     @Override
-    @OnlyIn(Dist.CLIENT)
     public BipedModel getArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlotType armorSlot, BipedModel _default) {
-        return model.getValue();
+        return new ModelUpsideDownGoggles();
     }
 
     @Nullable
