@@ -1,6 +1,6 @@
 /*
  * This class is taken by "Pick Up Notifier":
- * https://github.com/Fuzss/pickupnotifier/blob/1.14/src/main/java/com/fuzs/pickupnotifier/handler/DrawEntriesHandler.java
+ * https://github.com/Fuzss/pickupnotifier/blob/1.15/src/main/java/com/fuzs/pickupnotifier/handler/DrawEntriesHandler.java
  */
 
 package de.melanx.invswitch.rendering;

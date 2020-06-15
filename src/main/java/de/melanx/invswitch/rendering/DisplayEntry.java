@@ -1,11 +1,11 @@
 /*
  * This class is taken by "Pick Up Notifier" merged by DisplayEntry and ItemDisplayEntry:
- * https://github.com/Fuzss/pickupnotifier/tree/1.14/src/main/java/com/fuzs/pickupnotifier/util
+ * https://github.com/Fuzss/pickupnotifier/tree/1.15/src/main/java/com/fuzs/pickupnotifier/util
  */
 
 package de.melanx.invswitch.rendering;
 
-import com.mojang.blaze3d.platform.GlStateManager;
+import com.mojang.blaze3d.systems.RenderSystem;
 import de.melanx.invswitch.ClientConfigHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.AbstractGui;
@@ -116,31 +116,32 @@ public class DisplayEntry {
         boolean sprite = ClientConfigHandler.showSprite.get();
         int i = mirrored || !sprite ? posX : posX + 16 + MARGIN;
         int textWidth = this.getTextWidth(mc);
-        int opacity = mc.gameSettings.func_216839_a(0);
+        int opacity = mc.gameSettings.getChatBackgroundColor(0);
         if (opacity != 0) {
             AbstractGui.fill(i - 2, posY + 3 - 2, i + textWidth + 2, posY + 3 + mc.fontRenderer.FONT_HEIGHT + 2, opacity);
         }
 
         int k = ClientConfigHandler.fadeAway.get() ? 255 - (int) (255 * alpha) : 255;
         if (k >= 5) {
-            GlStateManager.enableBlend();
-            GlStateManager.blendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
+            RenderSystem.pushMatrix();
+            RenderSystem.enableBlend();
+            RenderSystem.defaultBlendFunc();
             mc.fontRenderer.drawStringWithShadow(this.getNameString(), i, posY + 3, 16777215 + (k << 24));
-            GlStateManager.disableBlend();
+            RenderSystem.disableBlend();
             if (sprite) {
                 this.renderSprite(mc, mirrored ? posX + textWidth + MARGIN : posX, posY);
             }
+            RenderSystem.popMatrix();
         }
     }
 
     protected void renderSprite(Minecraft mc, int posX, int posY) {
-        GlStateManager.enableDepthTest();
-        RenderHelper.enableGUIStandardItemLighting();
-        GlStateManager.disableLighting();
+        RenderSystem.enableDepthTest();
+        RenderSystem.disableLighting();
         mc.getItemRenderer().renderItemAndEffectIntoGUI(this.stack, posX, posY);
-        GlStateManager.enableLighting();
+        RenderSystem.enableLighting();
         RenderHelper.disableStandardItemLighting();
-        GlStateManager.disableDepthTest();
+        RenderSystem.disableDepthTest();
     }
 
     @SuppressWarnings("unused")
