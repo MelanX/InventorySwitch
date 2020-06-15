@@ -6,6 +6,7 @@ import net.minecraftforge.common.ForgeConfigSpec;
 
 public class ClientConfigHandler {
 
+    public static ForgeConfigSpec.BooleanValue showPickupNotifier;
     public static ForgeConfigSpec.BooleanValue showSprite;
     public static ForgeConfigSpec.EnumValue<TextColor> color;
     public static ForgeConfigSpec.BooleanValue ignoreRarity;
@@ -24,6 +25,7 @@ public class ClientConfigHandler {
 
     public ClientConfigHandler(ForgeConfigSpec.Builder builder) {
         builder.push("general");
+        showPickupNotifier = builder.comment("In case you have other mods that show the picked up items, disable this.").define("show-notifier", true);
         showSprite = builder.comment("Show a small sprite next to the name of each entry showing its contents.").define("draw-sprites", true);
         color = builder.comment("Color of the entry name text.").defineEnum("text-color", TextColor.WHITE);
         ignoreRarity = builder.comment("Ignore rarity of items and always use color specified in \"Text Color\" instead.").define("ignore-rarity", false);
