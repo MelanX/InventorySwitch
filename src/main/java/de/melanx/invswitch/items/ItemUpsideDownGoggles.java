@@ -1,6 +1,6 @@
 /*
-This class was an idea by the mod "Stupid Things"
-The source class can be found here: https://github.com/Furgl/Stupid-Things/blob/1.12/src/main/java/furgl/stupidThings/common/item/ItemUpsideDownGoggles.java
+ * This class was an idea by the mod "Stupid Things"
+ * The source class can be found here: https://github.com/Furgl/Stupid-Things/blob/1.12/src/main/java/furgl/stupidThings/common/item/ItemUpsideDownGoggles.java
  */
 
 package de.melanx.invswitch.items;
