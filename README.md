@@ -6,3 +6,5 @@ A Minecraft mod which was design for a streaming project of CastCrafter and Debi
 
 ### Credits
 The upside down goggles are completely taken from mod [Stupid Things](https://github.com/Furgl/Stupid-Things/). As well as the model file and the textures. It's a cool item and nice to have.
+
+The display part for items from the loot box are taken from mod [Pick Up Notifier](https://github.com/Fuzss/pickupnotifier).
