@@ -16,6 +16,8 @@ import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.LazyValue;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.DistExecutor;
 
 import javax.annotation.Nullable;
@@ -32,6 +34,7 @@ public class ItemUpsideDownGoggles extends ArmorItem {
 
     @Nullable
     @Override
+    @OnlyIn(Dist.CLIENT)
     public BipedModel getArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlotType armorSlot, BipedModel _default) {
         return new ModelUpsideDownGoggles();
     }
