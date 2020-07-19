@@ -12,10 +12,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.server.management.PlayerInteractionManager;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.Style;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.util.text.*;
 
 import java.util.UUID;
 
@@ -36,7 +33,7 @@ public class SwitchCommand {
         PlayerEntity player2 = null;
         PlayerInventory inventory1 = null;
         PlayerInventory inventory2 = null;
-        Style red = new Style().setColor(TextFormatting.DARK_RED);
+        Style red = Style.EMPTY.applyFormatting(TextFormatting.DARK_RED);
         if (target1 instanceof PlayerEntity) {
             player1 = (PlayerEntity) target1;
             inventory1 = player1.inventory;
@@ -46,29 +43,29 @@ public class SwitchCommand {
             inventory2 = player2.inventory;
         }
         if (player1 == null || player2 == null) {
-            ITextComponent textComponent = new TranslationTextComponent(Lib.COMMAND_PREFIX + "player_null");
-            textComponent.setStyle(red);
+            IFormattableTextComponent textComponent = new TranslationTextComponent(Lib.COMMAND_PREFIX + "player_null");
+            textComponent.func_230530_a_(red);
             InventorySwitch.LOGGER.error("One of the player was not found");
             source.sendFeedback(textComponent, false);
             return 0;
         }
         if (inventory1 == null || inventory2 == null) {
-            ITextComponent textComponent = new TranslationTextComponent(Lib.COMMAND_PREFIX + "inv_null");
-            textComponent.setStyle(red);
+            IFormattableTextComponent textComponent = new TranslationTextComponent(Lib.COMMAND_PREFIX + "inv_null");
+            textComponent.func_230530_a_(red);
             InventorySwitch.LOGGER.error("One of the inventories was not found");
             source.sendFeedback(textComponent, false);
             return 0;
         }
         if (player1 == player2) {
-            ITextComponent textComponent = new TranslationTextComponent(Lib.COMMAND_PREFIX + "player_equals");
-            textComponent.setStyle(red);
+            IFormattableTextComponent textComponent = new TranslationTextComponent(Lib.COMMAND_PREFIX + "player_equals");
+            textComponent.func_230530_a_(red);
             InventorySwitch.LOGGER.error("It's the same player");
             source.sendFeedback(textComponent, false);
             return 0;
         }
         if (inventory1 == inventory2) {
-            ITextComponent textComponent = new TranslationTextComponent(Lib.COMMAND_PREFIX + "inv_equals");
-            textComponent.setStyle(red);
+            IFormattableTextComponent textComponent = new TranslationTextComponent(Lib.COMMAND_PREFIX + "inv_equals");
+            textComponent.func_230530_a_(red);
             InventorySwitch.LOGGER.error("Both players share one inventory");
             source.sendFeedback(textComponent, false);
             return 0;
@@ -78,7 +75,7 @@ public class SwitchCommand {
         player1.inventory.copyInventory(player2.inventory);
         player2.inventory.copyInventory(fakePlayer.inventory);
         fakePlayer.remove();
-        ITextComponent textComponent = new TranslationTextComponent(Lib.COMMAND_PREFIX + "change_inventories", player1.getDisplayName().getFormattedText(), player2.getDisplayName().getFormattedText());
+        ITextComponent textComponent = new TranslationTextComponent(Lib.COMMAND_PREFIX + "change_inventories", player1.getDisplayName().getUnformattedComponentText(), player2.getDisplayName().getUnformattedComponentText());
         InventorySwitch.LOGGER.info(String.format("%s and %s changed their inventories", player1.getDisplayName().getString(), player2.getDisplayName().getString()));
         source.sendFeedback(textComponent, false);
         return 1;

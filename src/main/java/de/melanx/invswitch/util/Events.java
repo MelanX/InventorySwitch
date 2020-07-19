@@ -8,7 +8,7 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Effect;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.EntityViewRenderEvent;
@@ -22,7 +22,7 @@ import java.util.HashMap;
 
 @Mod.EventBusSubscriber(modid = InventorySwitch.MODID)
 public class Events {
-    private static final HashMap<PlayerEntity, Vec3d> playerPositions = new HashMap<>();
+    private static final HashMap<PlayerEntity, Vector3d> playerPositions = new HashMap<>();
 
     @SubscribeEvent
     @OnlyIn(Dist.CLIENT)
@@ -39,12 +39,12 @@ public class Events {
     @SubscribeEvent
     public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
         PlayerEntity player = event.player;
-        if (playerPositions.get(player) == null) playerPositions.put(player, new Vec3d(player.getPosX(), player.getPosY(), player.getPosZ()));
+        if (playerPositions.get(player) == null) playerPositions.put(player, new Vector3d(player.getPosX(), player.getPosY(), player.getPosZ()));
         if (hasEffect(player, Registration.freeze.get())) {
-            Vec3d pos = playerPositions.get(player);
+            Vector3d pos = playerPositions.get(player);
             player.setPosition(pos.getX(), pos.getY(), pos.getZ());
         } else {
-            playerPositions.put(player, new Vec3d(player.getPosX(), player.getPosY(), player.getPosZ()));
+            playerPositions.put(player, new Vector3d(player.getPosX(), player.getPosY(), player.getPosZ()));
         }
     }
 

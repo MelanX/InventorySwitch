@@ -10,12 +10,13 @@ import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.RegisterCommandsEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.commons.lang3.tuple.Pair;
 import org.apache.logging.log4j.LogManager;
@@ -38,12 +39,12 @@ public class InventorySwitch {
         new Events();
         Registration.init();
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, CLIENT_SPEC);
-        MinecraftForge.EVENT_BUS.addListener(this::serverLoad);
+        MinecraftForge.EVENT_BUS.register(this);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::onClientSetup);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setupCommon);
     }
 
-    public static void register(CommandDispatcher<CommandSource> dispatcher) {
+    public static void registerCommands(CommandDispatcher<CommandSource> dispatcher) {
         dispatcher.register(Commands.literal(MODID)
                 .then(WeatherCommand.register())
                 .then(SwitchCommand.register())
@@ -54,8 +55,9 @@ public class InventorySwitch {
         MinecraftForge.EVENT_BUS.register(new DrawEntriesHandler());
     }
 
-    private void serverLoad(FMLServerStartingEvent event) {
-        register(event.getCommandDispatcher());
+    @SubscribeEvent
+    public void onRegisterCommands(RegisterCommandsEvent event) {
+        registerCommands(event.getDispatcher());
     }
 
     private void setupCommon(final FMLCommonSetupEvent event) {

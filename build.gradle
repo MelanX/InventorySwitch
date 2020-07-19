@@ -25,7 +25,7 @@ archivesBaseName = "${modid}-${mc_version}"
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8'
 
 minecraft {
-    mappings("snapshot", mappings_version)
+    mappings channel: 'snapshot', version: '20200707-1.16.1'
     accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
 
     createRunConfig("client")
@@ -107,6 +107,10 @@ repositories {
     maven {
         name = "JEI"
         url = "https://dvs1.progwml6.com/files/maven/"
+    }
+    maven {
+        name = "yarn2mcp"
+        url = "https://maven.tterrag.com/"
     }
 }
 

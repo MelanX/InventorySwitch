@@ -8,10 +8,10 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.data.LootTableProvider;
 import net.minecraft.data.loot.FishingLootTables;
 import net.minecraft.item.Items;
+import net.minecraft.loot.*;
+import net.minecraft.loot.functions.EnchantRandomly;
+import net.minecraft.loot.functions.SetCount;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.storage.loot.*;
-import net.minecraft.world.storage.loot.functions.EnchantRandomly;
-import net.minecraft.world.storage.loot.functions.SetCount;
 
 import java.util.List;
 import java.util.Map;
@@ -31,6 +31,8 @@ public class ModLootTables extends LootTableProvider {
                 Pair.of(LootBox::new, LootParameterSets.EMPTY)
         );
     }
+
+
 
     @Override
     protected void validate(Map<ResourceLocation, LootTable> map, ValidationTracker validationtracker) {

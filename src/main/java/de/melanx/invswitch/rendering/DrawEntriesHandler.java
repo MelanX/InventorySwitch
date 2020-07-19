@@ -5,6 +5,7 @@
 
 package de.melanx.invswitch.rendering;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.platform.GlStateManager;
 import de.melanx.invswitch.ClientConfigHandler;
 import de.melanx.invswitch.items.ItemLootBox;
@@ -38,6 +39,7 @@ public class DrawEntriesHandler {
         if (ItemLootBox.PICK_UPS.isEmpty()) {
             return;
         }
+        MatrixStack ms = event.getMatrixStack();
 
         float scale = ClientConfigHandler.scale.get() / 6.0F;
         int scaledWidth = (int) (event.getWindow().getScaledWidth() / scale);
@@ -56,10 +58,10 @@ public class DrawEntriesHandler {
             int renderX = position.getX(entry.getTotalWidth(this.mc), scaledWidth, posX);
             if (bottom) {
                 if (renderY < offset + DisplayEntry.HEIGHT) {
-                    entry.render(this.mc, renderX, renderY, move ? MathHelper.clamp((float) (renderY - offset) / DisplayEntry.HEIGHT, 0.0F, 1.0F) : entry.getRelativeLife());
+                    entry.render(ms, this.mc, renderX, renderY, move ? MathHelper.clamp((float) (renderY - offset) / DisplayEntry.HEIGHT, 0.0F, 1.0F) : entry.getRelativeLife());
                 }
             } else if (renderY > offset - DisplayEntry.HEIGHT) {
-                entry.render(this.mc, renderX, renderY, move ? MathHelper.clamp((float) (renderY - offset) / -DisplayEntry.HEIGHT, 0.0F, 1.0F) : entry.getRelativeLife());
+                entry.render(ms, this.mc, renderX, renderY, move ? MathHelper.clamp((float) (renderY - offset) / -DisplayEntry.HEIGHT, 0.0F, 1.0F) : entry.getRelativeLife());
             }
             renderY += bottom ? -DisplayEntry.HEIGHT : DisplayEntry.HEIGHT;
         }

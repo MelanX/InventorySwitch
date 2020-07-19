@@ -5,6 +5,7 @@
 
 package de.melanx.invswitch.rendering;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import de.melanx.invswitch.ClientConfigHandler;
 import net.minecraft.client.Minecraft;
@@ -12,10 +13,7 @@ import net.minecraft.client.gui.AbstractGui;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Rarity;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.Style;
-import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.*;
 import org.apache.commons.lang3.mutable.MutableFloat;
 
 public class DisplayEntry {
@@ -59,15 +57,15 @@ public class DisplayEntry {
         return this.stack.getItem() == entry.stack.getItem();
     }
 
-    private ITextComponent getNameComponent() {
-        ITextComponent name = this.getName().shallowCopy();
+    private IFormattableTextComponent getNameComponent() {
+        IFormattableTextComponent name = (IFormattableTextComponent) this.getName();
         if (this.count <= 0) {
             return name;
         }
         if (ClientConfigHandler.position.get().isMirrored()) {
-            return new StringTextComponent(this.count + "x ").appendSibling(name);
+            return new StringTextComponent(this.count + "x ").func_230529_a_(name);
         } else {
-            return name.appendText(" x" + this.count);
+            return name.func_240702_b_(" x" + this.count);
         }
     }
 
@@ -91,14 +89,14 @@ public class DisplayEntry {
 
     private Style getStyle() {
         if (!ClientConfigHandler.ignoreRarity.get() && this.rarity != Rarity.COMMON) {
-            return new Style().setColor(this.rarity.color);
+            return Style.EMPTY.setFormatting(this.rarity.color);
         } else {
-            return new Style().setColor(ClientConfigHandler.color.get().getChatColor());
+            return Style.EMPTY.setFormatting(ClientConfigHandler.color.get().getChatColor());
         }
     }
 
     private String getNameString() {
-        return this.getNameComponent().setStyle(this.getStyle()).getFormattedText();
+        return this.getNameComponent().func_230530_a_(this.getStyle()).getString(); // todo getFormattedText
     }
 
     private int getTextWidth(Minecraft mc) {
@@ -111,14 +109,14 @@ public class DisplayEntry {
         return ClientConfigHandler.showSprite.get() ? length + MARGIN + 16 : length;
     }
 
-    public final void render(Minecraft mc, int posX, int posY, float alpha) {
+    public final void render(MatrixStack ms, Minecraft mc, int posX, int posY, float alpha) {
         boolean mirrored = ClientConfigHandler.position.get().isMirrored();
         boolean sprite = ClientConfigHandler.showSprite.get();
         int i = mirrored || !sprite ? posX : posX + 16 + MARGIN;
         int textWidth = this.getTextWidth(mc);
         int opacity = mc.gameSettings.getChatBackgroundColor(0);
         if (opacity != 0) {
-            AbstractGui.fill(i - 2, posY + 3 - 2, i + textWidth + 2, posY + 3 + mc.fontRenderer.FONT_HEIGHT + 2, opacity);
+            AbstractGui.fill(ms, i - 2, posY + 3 - 2, i + textWidth + 2, posY + 3 + mc.fontRenderer.FONT_HEIGHT + 2, opacity);
         }
 
         int k = ClientConfigHandler.fadeAway.get() ? 255 - (int) (255 * alpha) : 255;
@@ -126,7 +124,7 @@ public class DisplayEntry {
             RenderSystem.pushMatrix();
             RenderSystem.enableBlend();
             RenderSystem.defaultBlendFunc();
-            mc.fontRenderer.drawStringWithShadow(this.getNameString(), i, posY + 3, 16777215 + (k << 24));
+            mc.fontRenderer.drawStringWithShadow(ms, this.getNameString(), i, posY + 3, 16777215 + (k << 24));
             RenderSystem.disableBlend();
             if (sprite) {
                 this.renderSprite(mc, mirrored ? posX + textWidth + MARGIN : posX, posY);

@@ -17,9 +17,9 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 public class Registration {
 
-    public static final DeferredRegister<Item> ITEMS = new DeferredRegister<>(ForgeRegistries.ITEMS, InventorySwitch.MODID);
-    public static final DeferredRegister<Effect> EFFECTS = new DeferredRegister<>(ForgeRegistries.POTIONS, InventorySwitch.MODID);
-    public static final DeferredRegister<Potion> POTIONS = new DeferredRegister<>(ForgeRegistries.POTION_TYPES, InventorySwitch.MODID);
+    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, InventorySwitch.MODID);
+    public static final DeferredRegister<Effect> EFFECTS = DeferredRegister.create(ForgeRegistries.POTIONS, InventorySwitch.MODID);
+    public static final DeferredRegister<Potion> POTIONS = DeferredRegister.create(ForgeRegistries.POTION_TYPES, InventorySwitch.MODID);
 
     public static final Item.Properties itemProps = new Item.Properties().group(ItemGroup.MISC);
 
