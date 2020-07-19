@@ -67,7 +67,7 @@ public class ItemLootBox extends Item {
             LootContext.Builder builder = new LootContext.Builder((ServerWorld) worldIn).withParameter(LootParameters.TOOL, playerIn.getHeldItem(handIn)).withParameter(LootParameters.POSITION, playerIn.func_233580_cy_());
             List<ItemStack> items = table.generate(builder.build(LootParameterSets.FISHING));
             for (ItemStack item : items) {
-                if (ClientConfigHandler.showPickupNotifier.get()) addItemEntry(item);
+//                if (ClientConfigHandler.showPickupNotifier.get()) addItemEntry(item); fixme
                 if (item.getItem() instanceof SpawnEggItem) {
                     EntityType<?> entityType = ((SpawnEggItem) item.getItem()).getType(item.getTag());
                     for (int i = 0; i < item.getCount(); i++)
