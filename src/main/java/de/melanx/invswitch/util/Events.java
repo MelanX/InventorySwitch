@@ -18,9 +18,11 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
+import java.util.HashMap;
+
 @Mod.EventBusSubscriber(modid = InventorySwitch.MODID)
 public class Events {
-    private static Vec3d playerPosition;
+    private static final HashMap<PlayerEntity, Vec3d> playerPositions = new HashMap<>();
 
     @SubscribeEvent
     @OnlyIn(Dist.CLIENT)
@@ -37,11 +39,12 @@ public class Events {
     @SubscribeEvent
     public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
         PlayerEntity player = event.player;
-        if (playerPosition == null) playerPosition = new Vec3d(player.posX, player.posY, player.posZ);
+        if (playerPositions.get(player) == null) playerPositions.put(player, new Vec3d(player.getPosX(), player.getPosY(), player.getPosZ()));
         if (hasEffect(player, Registration.freeze.get())) {
-            player.setPosition(playerPosition.getX(), playerPosition.getY(), playerPosition.getZ());
+            Vec3d pos = playerPositions.get(player);
+            player.setPosition(pos.getX(), pos.getY(), pos.getZ());
         } else {
-            playerPosition = new Vec3d(player.posX, player.posY, player.posZ);
+            playerPositions.put(player, new Vec3d(player.getPosX(), player.getPosY(), player.getPosZ()));
         }
     }
 
