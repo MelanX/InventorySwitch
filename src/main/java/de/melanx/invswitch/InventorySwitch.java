@@ -30,6 +30,7 @@ public class InventorySwitch {
     public static Logger LOGGER = LogManager.getLogger(MODID);
     public static final ClientConfigHandler CLIENT;
     public static final ForgeConfigSpec CLIENT_SPEC;
+
     static {
         final Pair<ClientConfigHandler, ForgeConfigSpec> specPair = new ForgeConfigSpec.Builder().configure(ClientConfigHandler::new);
         CLIENT_SPEC = specPair.getRight();

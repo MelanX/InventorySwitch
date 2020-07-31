@@ -9,7 +9,7 @@ public interface Packet {
     void toBytes(PacketBuffer buf);
 
     default void handle(Supplier<NetworkEvent.Context> context) {
-        if(isValid(context)){
+        if (isValid(context)) {
             context.get().enqueueWork(() -> {
                 doWork(context);
             });

@@ -1,7 +1,6 @@
 package de.melanx.invswitch.items;
 
 import com.google.common.collect.Lists;
-import de.melanx.invswitch.ClientConfigHandler;
 import de.melanx.invswitch.InventorySwitch;
 import de.melanx.invswitch.networking.NetworkUtil;
 import de.melanx.invswitch.networking.PickUpEntryPacket;
@@ -22,12 +21,10 @@ import net.minecraft.loot.LootTable;
 import net.minecraft.util.*;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
-import net.minecraftforge.fml.network.NetworkDirection;
 import net.minecraftforge.fml.network.PacketDistributor;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.function.Supplier;
 
 public class ItemLootBox extends Item {
 
@@ -73,7 +70,6 @@ public class ItemLootBox extends Item {
             LootContext.Builder builder = new LootContext.Builder((ServerWorld) worldIn).withParameter(LootParameters.TOOL, playerIn.getHeldItem(handIn)).withParameter(LootParameters.POSITION, playerIn.func_233580_cy_());
             List<ItemStack> items = table.generate(builder.build(LootParameterSets.FISHING));
             for (ItemStack item : items) {
-
                 ServerPlayerEntity playerEntity = (ServerPlayerEntity) playerIn;
                 NetworkUtil.INSTANCE.send(PacketDistributor.PLAYER.with(() -> playerEntity), new PickUpEntryPacket(item));
                 //addItemEntry(item);
@@ -87,9 +83,6 @@ public class ItemLootBox extends Item {
 
             }
             playerIn.getHeldItem(handIn).shrink(1);
-
-
-
         } else {
             worldIn.playSound(playerIn, playerIn.func_233580_cy_(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.NEUTRAL, 1.0F, 1.0F);
         }

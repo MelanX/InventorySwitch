@@ -8,11 +8,11 @@ import net.minecraftforge.fml.network.NetworkEvent;
 
 import java.util.function.Supplier;
 
-public class PickUpEntryPacket implements Packet{
+public class PickUpEntryPacket implements Packet {
 
     ItemStack itemStack;
 
-    public PickUpEntryPacket(ItemStack itemStack){
+    public PickUpEntryPacket(ItemStack itemStack) {
         this.itemStack = itemStack;
     }
 
