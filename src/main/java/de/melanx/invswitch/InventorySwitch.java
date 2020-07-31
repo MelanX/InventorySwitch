@@ -3,6 +3,7 @@ package de.melanx.invswitch;
 import com.mojang.brigadier.CommandDispatcher;
 import de.melanx.invswitch.commands.SwitchCommand;
 import de.melanx.invswitch.commands.WeatherCommand;
+import de.melanx.invswitch.networking.NetworkUtil;
 import de.melanx.invswitch.rendering.DrawEntriesHandler;
 import de.melanx.invswitch.util.Events;
 import de.melanx.invswitch.util.Registration;
@@ -62,5 +63,6 @@ public class InventorySwitch {
 
     private void setupCommon(final FMLCommonSetupEvent event) {
         Registration.registerBrewingRecipes();
+        NetworkUtil.registerMessages();
     }
 }
