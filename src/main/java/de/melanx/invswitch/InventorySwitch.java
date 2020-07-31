@@ -3,6 +3,7 @@ package de.melanx.invswitch;
 import com.mojang.brigadier.CommandDispatcher;
 import de.melanx.invswitch.commands.SwitchCommand;
 import de.melanx.invswitch.commands.WeatherCommand;
+import de.melanx.invswitch.networking.NetworkUtil;
 import de.melanx.invswitch.rendering.DrawEntriesHandler;
 import de.melanx.invswitch.util.Events;
 import de.melanx.invswitch.util.Registration;
@@ -28,6 +29,7 @@ public class InventorySwitch {
     public static Logger LOGGER = LogManager.getLogger(MODID);
     public static final ClientConfigHandler CLIENT;
     public static final ForgeConfigSpec CLIENT_SPEC;
+
     static {
         final Pair<ClientConfigHandler, ForgeConfigSpec> specPair = new ForgeConfigSpec.Builder().configure(ClientConfigHandler::new);
         CLIENT_SPEC = specPair.getRight();
@@ -60,5 +62,6 @@ public class InventorySwitch {
 
     private void setupCommon(final FMLCommonSetupEvent event) {
         Registration.registerBrewingRecipes();
+        NetworkUtil.registerMessages();
     }
 }
