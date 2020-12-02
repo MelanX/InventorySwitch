@@ -1,6 +1,7 @@
 modLoader="javafml"
-loaderVersion="[32,)"
+loaderVersion="[34,)"
 issueTrackerURL="http://www.github.com/MelanX/InventorySwitch/issues/"
+license="MIT License"
 
 [[mods]]
 modId="invswitch"
@@ -18,13 +19,13 @@ A mod to change inventories for 2 players on a server.
 [[dependencies.invswitch]]
     modId="forge"
     mandatory=true
-    versionRange="[32.0.67,)"
+    versionRange="[34.1,)"
     ordering="NONE"
     side="BOTH"
 
 [[dependencies.invswitch]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.16.1,)"
+    versionRange="[1.16.3,)"
     ordering="NONE"
     side="BOTH"

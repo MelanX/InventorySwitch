@@ -19,6 +19,8 @@ import net.minecraft.loot.LootParameterSets;
 import net.minecraft.loot.LootParameters;
 import net.minecraft.loot.LootTable;
 import net.minecraft.util.*;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.fml.network.PacketDistributor;
@@ -67,20 +69,20 @@ public class ItemLootBox extends Item {
     public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
         if (!worldIn.isRemote) {
             LootTable table = worldIn.getServer().getLootTableManager().getLootTableFromLocation(loot_table);
-            LootContext.Builder builder = new LootContext.Builder((ServerWorld) worldIn).withParameter(LootParameters.TOOL, playerIn.getHeldItem(handIn)).withParameter(LootParameters.POSITION, playerIn.func_233580_cy_());
+            BlockPos playerPos = playerIn.func_233580_cy_();
+            LootContext.Builder builder = new LootContext.Builder((ServerWorld) worldIn).withParameter(LootParameters.TOOL, playerIn.getHeldItem(handIn)).withParameter(LootParameters.field_237457_g_, new Vector3d(playerPos.getX(), playerPos.getY(), playerPos.getZ()));
             List<ItemStack> items = table.generate(builder.build(LootParameterSets.FISHING));
             for (ItemStack item : items) {
                 ServerPlayerEntity playerEntity = (ServerPlayerEntity) playerIn;
                 NetworkUtil.INSTANCE.send(PacketDistributor.PLAYER.with(() -> playerEntity), new PickUpEntryPacket(item));
-                //addItemEntry(item);
+                // addItemEntry(item);
                 if (item.getItem() instanceof SpawnEggItem) {
                     EntityType<?> entityType = ((SpawnEggItem) item.getItem()).getType(item.getTag());
                     for (int i = 0; i < item.getCount(); i++)
-                        entityType.spawn(worldIn, item, playerIn, playerIn.func_233580_cy_(), SpawnReason.SPAWN_EGG, false, false);
+                        entityType.spawn((ServerWorld) worldIn, item, playerIn, playerIn.func_233580_cy_(), SpawnReason.SPAWN_EGG, false, false);
                 } else if (!playerIn.inventory.addItemStackToInventory(item)) {
                     worldIn.addEntity(new ItemEntity(worldIn, playerIn.getPosX(), playerIn.getPosY(), playerIn.getPosZ(), item));
                 }
-
             }
             playerIn.getHeldItem(handIn).shrink(1);
         } else {
